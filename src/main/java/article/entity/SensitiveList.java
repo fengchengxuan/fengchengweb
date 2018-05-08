@@ -1,8 +1,14 @@
 package article.entity;
 
-public class sensitiveList {
-	private String sl_id;
-	private String words;
+/**
+ * √Ù∏–¥ ±Ì
+ * 
+ * @author fengcheng
+ *
+ */
+public class SensitiveList {
+	private String sl_id;// id
+	private String words;// √Ù∏–¥ 
 
 	public String getSl_id() {
 		return sl_id;

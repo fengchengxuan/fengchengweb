@@ -2,19 +2,25 @@ package article.entity;
 
 import java.util.Date;
 
-public class article {
-	private String id;
-	private String fcuser_id;
-	private String fccomment_id;
-	private String art_title;
-	private String pic_url;
-	private String art_abstract;
-	private String art_key;
-	private String content;
-	private String art_state;
-	private String art_type;
-	private Date create_date;
-	private int browse_count;
+/**
+ * 文章表
+ * 
+ * @author fengcheng
+ *
+ */
+public class Article {
+	private String id;// id
+	private String fcuser_id;// 用户id
+	private String fccomment_id;// 文章评价表id
+	private String art_title;// 文章标题
+	private String pic_url;// 文章图片地址
+	private String art_abstract;// 摘要
+	private String art_key;// 关键词
+	private String content;// 文章内容
+	private String art_state;// 文章状态：0-草稿；1-正式发布
+	private String art_type;// 文章类型：0-新闻快报；1-十二数据；2-我们与峰程
+	private Date create_date;// 创建时间
+	private int browse_count;// 浏览次数
 
 	public String getId() {
 		return id;

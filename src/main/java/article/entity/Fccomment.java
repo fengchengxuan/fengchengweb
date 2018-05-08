@@ -2,18 +2,24 @@ package article.entity;
 
 import java.util.Date;
 
-public class fccomment {
-	private String id;
-	private String article_id;
-	private String fcuser_id;
-	private String repay_id;
-	private Date comm_time;
-	private String content;
-	private int is_include_sensitive;
-	private String sensitive_word;
-	private String submiter_addr;
-	private String comment_type;
-	private String comment_status;
+/**
+ * 文章评论表
+ * 
+ * @author fengcheng
+ *
+ */
+public class Fccomment {
+	private String id;// id
+	private String article_id;// 文章id
+	private String fcuser_id;// 用户id
+	private String repay_id;// 回复id,对应fccomment表的id, 与fccomment表的id进行关联
+	private Date comm_time;// 评论时间
+	private String content;// 评论内容
+	private int is_include_sensitive;// 是否含敏感词
+	private String sensitive_word;// 敏感词
+	private String submiter_addr;// 评论者地址
+	private String comment_type;// 评价类型：好评/中评/差评
+	private String comment_status;// 评价状态：1-正常，0-拦截
 
 	public String getId() {
 		return id;
