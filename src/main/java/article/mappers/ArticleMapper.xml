@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="article.dao.ArticleDao">
+
+    <resultMap type="article.entity.Article"  id="ArticleResult">  
+        <id property="id" column="id" javaType="String"/>  
+        <result property="fcuser_id" column="fcuser_id" javaType="String"/>  
+        <result property="fccomment_id" column="fccomment_id" javaType="String"/>  
+        <result property="art_title" column="art_title" javaType="String"/>  
+        <result property="pic_url" column="pic_url" javaType="String"/>  
+        <result property="art_abstract" column="art_abstract" javaType="String"/>  
+        <result property="art_key" column="art_key" javaType="String"/>  
+        <result property="content" column="content" javaType="String"/>  
+        <result property="art_state" column="art_state" javaType="String"/>  
+        <result property="art_type" column="art_type" javaType="String"/>  
+        <result property="create_date" column="create_date" javaType="java.util.Date"/>  
+        <result property="browse_count" column="browse_count" javaType="int"/>  
+    </resultMap>  	
+
+    <resultMap type="article.entity.Fccomment"  id="FccommentResult">  
+        <id property="id" column="id" javaType="String"/>  
+        <result property="article_id" column="article_id" javaType="String"/>  
+        <result property="fcuser_id" column="fcuser_id" javaType="String"/>  
+        <result property="repay_id" column="repay_id" javaType="String"/>  
+        <result property="comm_time" column="comm_time" javaType="java.util.Date"/>  
+        <result property="content" column="content" javaType="String"/>  
+        <result property="is_include_sensitive" column="is_include_sensitive" javaType="int"/>  
+        <result property="sensitive_word" column="sensitive_word" javaType="String"/>  
+        <result property="submiter_addr" column="submiter_addr" javaType="String"/>  
+        <result property="comment_type" column="comment_type" javaType="String"/>  
+        <result property="comment_status" column="comment_status" javaType="String"/>  
+    </resultMap>  	
+	
+	<select id="login" parameterType="User" resultMap="UserResult">
+		select * from t_user where userName=#{userName} and password=#{password}
+	</select>
+	
+	<select id="getArticle" parameterType="Article" resultMap="ArticleResult">
+		select * from article where id=#{id}
+	</select>
+	
+	<select id="findArticleList" parameterType="java.lang.String" resultMap="ArticleResult">
+		select * from article where art_type = #{art_type}
+	</select>
+	
+	<select id="getComent" parameterType="java.lang.String" resultMap="FccommentResult">
+		select * from fccomment where article_id = #{article_id} and fcuser_id = #{fcuser_id}
+	</select>
+	
+	<insert id="addCommont" parameterType="Fccomment">
+		insert into fccomment values (#{id},#{article_id},#{fcuser_id},#{repay_id},#{comm_time},#{content},#{is_include_sensitive},#{sensitive_word},#{submiter_addr},#{comment_type},#{comment_status});
+	</insert>
+	
+	<delete id="addArticle" parameterType="Article">
+		insert into article values(#{id},#{fcuser_id},#{fccomment_id},#{art_title},#{pic_url},#{art_abstract},#{art_key},#{content},#{art_state},#{art_type},#{create_date},#{browse_count})
+	</delete>
+	
+	<update id="updateArticle" parameterType="Article">  
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">  
+		update article   
+			<set>  
+				<if test="item.art_title != null and item.art_title!= ''">art_title =#{item.art_title,jdbcType=VARCHAR},</if>  
+				<if test="item.remark != null and item.remark != ''">remark =#{item.remark,jdbcType=VARCHAR},</if>  
+				<if test="item.art_key!= null and item.art_key!= != ''">art_key=#{item.art_key,jdbcType=VARCHAR},</if>  
+				<if test="item.art_abstract!= null and item.art_abstract!= != ''">art_abstract=#{item.art_abstract,jdbcType=VARCHAR},</if>  
+				<if test="item.content!= null and item.content!= != ''">art_key=#{item.content,jdbcType=VARCHAR},</if>  
+				<if test="item.art_state!= null and item.art_state!= != ''">art_state=#{item.art_state,jdbcType=VARCHAR},</if>  
+				<if test="item.art_type!= null and item.art_type!= != ''">art_type=#{item.art_type,jdbcType=VARCHAR}</if>  
+			</set>where id = #{item.id,jdbcType=VARCHAR}   
+		</foreach>   
+	</update>  
+
+</mapper> 
