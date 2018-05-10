@@ -3,18 +3,19 @@ package bill.entity;
 import java.util.Date;
 
 public class BillApp {
-	private String id;// id
+	private int id;// id
 	private String app_type;// 开具类型
 	private String bill_type;// 发票类型
 	private String bill_title;// 发票抬头
 	private String fcuser_id;// 用户id
 	private Date bill_create_date;
 
-	public String getId() {
+	
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

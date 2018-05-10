@@ -9,7 +9,7 @@ import java.util.Date;
  *
  */
 public class FcUser {
-	private String id;// id
+	private int id;// id
 	private int role_id;// 用户角色id
 	private int privilege_id;// 权限id
 	private String username;// 用户名
@@ -35,11 +35,13 @@ public class FcUser {
 	private Date regi_time;// 注册时间
 	private String user_status;// 0-未注册；1-已注册(未登录)；2-已登录；3-已申请免费体验；4-免费体验审批通过；5-免费体验审批不通过
 
-	public String getId() {
+	
+
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

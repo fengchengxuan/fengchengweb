@@ -52,6 +52,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="login" parameterType="User" resultMap="UserResult">
 		select * from fcuser where userName=#{userName} and password=#{password}
 	</select>
+	<select id="findFcUser" parameterType="int">
+		select * from fcuser  where id = #{id}
+	</select>
 	
 	<update id="updateUserInfo" parameterType="User">  
 		<foreach collection="list" item="item" index="index" open="" close="" separator=";">  

@@ -8,7 +8,7 @@ package order.entity;
 import java.util.Date;
 
 public class OrderJudge {
-	private String id;// id
+	private int id;// id
 	private String pro_order_id;// product 表的 id
 	private String fcuser_id;// 用户id
 	private String repay_id;// 回复id, 与product_judge表的id进行关联
@@ -20,11 +20,13 @@ public class OrderJudge {
 	private String judge_status;// 评价状态：1-正常，0-拦截
 	private String judge_start;// 评价状态：0-0星，1-1星，2-2星，3-3星，4-4星，5-5星
 
-	public String getId() {
+	
+
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
