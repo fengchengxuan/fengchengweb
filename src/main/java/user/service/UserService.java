@@ -6,9 +6,9 @@ import user.entity.FcUser;
 
 public interface UserService {
 	
-	boolean register(String userName ,String password,String type);//ÕËºÅ ÃÜÂë ×¢²áÀàĞÍ
+	boolean register(String userName ,String password);//ÕËºÅ ÃÜÂë ×¢²áÀàĞÍ
 	FcUser login(String userName ,String password);
-	FcUser admin(String userName ,String password);
+	FcUser adminlogin(String userName ,String password);
 	void updateUserInfo();
 	void addFcUser(String userName ,String Password ,String roleId ,String priviledgeId);
 	void removeFcUser(String fcUserId);

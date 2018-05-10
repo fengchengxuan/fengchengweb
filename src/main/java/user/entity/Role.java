@@ -3,7 +3,7 @@ package user.entity;
 public class Role {
 	private String id;// id
 	private String fcuser_id;// ”√ªßid
-	private String privilege_id;
+	private int privilege_id;
 	private String role;
 
 	public String getId() {
@@ -22,11 +22,11 @@ public class Role {
 		this.fcuser_id = fcuser_id;
 	}
 
-	public String getPrivilege_id() {
+	public int getPrivilege_id() {
 		return privilege_id;
 	}
 
-	public void setPrivilege_id(String privilege_id) {
+	public void setPrivilege_id(int privilege_id) {
 		this.privilege_id = privilege_id;
 	}
 
