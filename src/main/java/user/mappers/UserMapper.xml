@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user.dao.UserDao">
+	
+    <resultMap type="user.entity.FcUser"  id="FcUserResult">  
+        <id property="id" column="id" javaType="String"/>  
+        <result property="role_id" column="role_id" javaType="int"/>  
+        <result property="privilege_id" column="privilege_id" javaType="int"/>  
+        <result property="username" column="username" javaType="String"/>  
+        <result property="password" column="password" javaType="String"/>  
+        <result property="profile_photo" column="profile_photo" javaType="String"/>  
+        <result property="pwd_safe_question" column="pwd_safe_question" javaType="String"/>  
+        <result property="pwd_safe_answer" column="pwd_safe_answer" javaType="String"/>  
+        <result property="prod_kind_id" column="prod_kind_id" javaType="int"/>  
+        <result property="comp_type_id" column="comp_type_id" javaType="int"/>  
+        <result property="app_type_id" column="app_type_id" javaType="int"/>  
+        <result property="oper_addr" column="oper_addr" javaType="String"/>  
+        <result property="phone" column="phone" javaType="String"/>  
+        <result property="tel" column="tel" javaType="String"/>  
+        <result property="email" column="email" javaType="String"/>  
+        <result property="wechart" column="wechart" javaType="String"/>  
+        <result property="demand" column="demand" javaType="String"/>  
+        <result property="ip" column="ip" javaType="String"/>  
+        <result property="location" column="location" javaType="String"/>  
+        <result property="company" column="company" javaType="String"/>  
+        <result property="website" column="website" javaType="String"/>  
+        <result property="user_status_id" column="user_status_id" javaType="int"/>  
+        <result property="user_intent" column="user_intent" javaType="String"/>  
+        <result property="regi_time" column="regi_time" javaType="java.util.Date"/>  
+        <result property="user_status" column="user_status" javaType="String"/>
+    </resultMap>
+    
+    <resultMap type="user.entity.Privilege" id="PrivilegeResult">
+    	<id property="id" column="id" javaType="int"/>
+    	<result property="role_id" column="role_id" javaType="String"/>
+    	<result property="privilege" column="privilege" javaType="String"/>
+    </resultMap>
+    
+    <resultMap type="user.entity.Role" id="RoleResult">
+    	<id property="id" column="id" javaType="int"/>
+    	<result property="fcuser_id" column="fcuser_id" javaType="String"/>
+    	<result property="privilege_id" column="privilege_id" javaType="int"/>
+    	<result property="role" column="role" javaType="String"/>
+    </resultMap>
+
+	<insert id="register" parameterType="User">
+		insert into fcuser where userName=#{userName} and password=#{password}
+	</insert>
+
+	<select id="login" parameterType="User" resultMap="UserResult">
+		select * from fcuser where userName=#{userName} and password=#{password}
+	</select>
+	<select id="findFcUser" parameterType="int">
+		select * from fcuser  where id = #{id}
+	</select>
+	
+	<update id="updateUserInfo" parameterType="User">  
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">  
+		update fcuser   
+			<set>  
+				<if test="item.company != null and item.company!= ''">company =#{item.company,jdbcType=VARCHAR},</if>  
+				<if test="item.prod_kind_id != null and item.prod_kind_id != ''">prod_kind_id =#{item.prod_kind_id,jdbcType=VARCHAR},</if>  
+				<if test="item.tel!= null and item.tel!= != ''">tel=#{item.tel,jdbcType=VARCHAR},</if>  
+				<if test="item.phone!= null and item.phone!= != ''">phone=#{item.phone,jdbcType=VARCHAR},</if>  
+				<if test="item.oper_addr!= null and item.oper_addr!= != ''">oper_addr=#{item.oper_addr,jdbcType=VARCHAR},</if>  
+				<if test="item.comp_type_id!= null and item.comp_type_id!= != ''">comp_type_id=#{item.comp_type_id,jdbcType=VARCHAR},</if>  
+				<if test="item.app_type_id!= null and item.app_type_id!= != ''">app_type_id=#{item.app_type_id,jdbcType=VARCHAR}</if>  
+				<if test="item.website!= null and item.website!= != ''">website=#{item.website,jdbcType=VARCHAR}</if>  
+				<if test="item.email!= null and item.email!= != ''">email=#{item.email,jdbcType=VARCHAR}</if>  
+				<if test="item.wechart!= null and item.wechart!= != ''">wechart=#{item.wechart,jdbcType=VARCHAR}</if>  
+			</set> where id = #{item.id,jdbcType=VARCHAR}   
+		</foreach>   
+	</update>  
+
+	<insert id="addFcUser" parameterType="User">
+		insert into fcuser where userName=#{userName} and password=#{password} and role_id=#{role_id} and privilege_id=#{privilege_id}
+	</insert>
+	
+	<delete id="removeFcUser" parameterType="int">
+		delete from fcuser where id = #{id}
+	</delete>
+	
+	<update id="updateFcUser" parameterType="User">  
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">  
+		update fcuser   
+			<set>  
+				<if test="item.company != null and item.company!= ''">company =#{item.company,jdbcType=VARCHAR},</if>  
+				<if test="item.prod_kind_id != null and item.prod_kind_id != ''">prod_kind_id =#{item.prod_kind_id,jdbcType=VARCHAR},</if>  
+				<if test="item.tel!= null and item.tel!= != ''">tel=#{item.tel,jdbcType=VARCHAR},</if>  
+				<if test="item.phone!= null and item.phone!= != ''">phone=#{item.phone,jdbcType=VARCHAR},</if>  
+				<if test="item.oper_addr!= null and item.oper_addr!= != ''">oper_addr=#{item.oper_addr,jdbcType=VARCHAR},</if>  
+				<if test="item.comp_type_id!= null and item.comp_type_id!= != ''">comp_type_id=#{item.comp_type_id,jdbcType=VARCHAR},</if>  
+				<if test="item.app_type_id!= null and item.app_type_id!= != ''">app_type_id=#{item.app_type_id,jdbcType=VARCHAR}</if>  
+				<if test="item.website!= null and item.website!= != ''">website=#{item.website,jdbcType=VARCHAR}</if>  
+				<if test="item.email!= null and item.email!= != ''">email=#{item.email,jdbcType=VARCHAR}</if>  
+				<if test="item.wechart!= null and item.wechart!= != ''">wechart=#{item.wechart,jdbcType=VARCHAR}</if>  
+			</set> where id = #{item.id,jdbcType=VARCHAR}   
+		</foreach>   
+	</update>  
+	
+	<insert id="addCommont" parameterType="Fccomment">
+		insert into fccomment values (#{id},#{article_id},#{fcuser_id},#{repay_id},#{comm_time},#{content},#{is_include_sensitive},#{sensitive_word},#{submiter_addr},#{comment_type},#{comment_status});
+	</insert>
+	
+	<insert id="addArticle" parameterType="Article">
+		insert into article values(#{id},#{fcuser_id},#{fccomment_id},#{art_title},#{pic_url},#{art_abstract},#{art_key},#{content},#{art_state},#{art_type},#{create_date},#{browse_count})
+	</insert>
+	
+	<update id="updateArticle" parameterType="Article">  
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">  
+		update article   
+			<set>  
+				<if test="item.art_title != null and item.art_title!= ''">art_title =#{item.art_title,jdbcType=VARCHAR},</if>  
+				<if test="item.remark != null and item.remark != ''">remark =#{item.remark,jdbcType=VARCHAR},</if>  
+				<if test="item.art_key!= null and item.art_key!= != ''">art_key=#{item.art_key,jdbcType=VARCHAR},</if>  
+				<if test="item.art_abstract!= null and item.art_abstract!= != ''">art_abstract=#{item.art_abstract,jdbcType=VARCHAR},</if>  
+				<if test="item.content!= null and item.content!= != ''">art_key=#{item.content,jdbcType=VARCHAR},</if>  
+				<if test="item.art_state!= null and item.art_state!= != ''">art_state=#{item.art_state,jdbcType=VARCHAR},</if>  
+				<if test="item.art_type!= null and item.art_type!= != ''">art_type=#{item.art_type,jdbcType=VARCHAR}</if>  
+			</set> where id = #{item.id,jdbcType=VARCHAR}   
+		</foreach>   
+	</update>  
+	
+</mapper>
