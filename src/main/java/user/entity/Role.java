@@ -1,26 +1,31 @@
 package user.entity;
 
 public class Role {
-	private String id;// id
+	private int id;// id
 	private String fcuser_id;// ”√ªßid
 	private String privilege_id;
 	private String role;
 
-	public String getId() {
+
+
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
+
 
 	public String getFcuser_id() {
 		return fcuser_id;
 	}
 
+
 	public void setFcuser_id(String fcuser_id) {
 		this.fcuser_id = fcuser_id;
 	}
+
 
 	public String getPrivilege_id() {
 		return privilege_id;
@@ -30,13 +35,31 @@ public class Role {
 		this.privilege_id = privilege_id;
 	}
 
+
+
+
+
+
+
 	public String getRole() {
 		return role;
 	}
 
+
+
+
+
+
+
 	public void setRole(String role) {
 		this.role = role;
 	}
+
+
+
+
+
+
 
 	@Override
 	public String toString() {

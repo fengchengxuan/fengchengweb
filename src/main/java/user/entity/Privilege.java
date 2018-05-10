@@ -7,15 +7,17 @@ package user.entity;
  *
  */
 public class Privilege {
-	private String id;// id
+	private int id;// id
 	private String role_id;// ½ÇÉ«id
 	private String privilege;
 
-	public String getId() {
+	
+
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
