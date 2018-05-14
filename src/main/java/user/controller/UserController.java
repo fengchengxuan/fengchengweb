@@ -18,7 +18,7 @@ import user.entity.FcUser;
 import user.service.UserService;
 
 @Controller
-public class UserAction {
+public class UserController {
 	@Autowired
 	Map<String ,Object> map;
 	@Autowired
