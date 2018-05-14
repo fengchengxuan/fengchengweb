@@ -11,8 +11,6 @@ public class Privilege {
 	private String role_id;// ½ÇÉ«id
 	private String privilege;
 
-	
-
 	public int getId() {
 		return id;
 	}
