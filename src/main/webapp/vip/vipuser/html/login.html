@@ -4,7 +4,7 @@
 
 
 <div style="background-color: #ededed">
-    <div class="loginbg">
+    <div class="loginbg" ng-init="forget=false">
         <div class="logincon">
             <div class="loginbox" id="nava">
                 <!--会员登录-->
@@ -34,14 +34,14 @@
                             <form action="" id="mainform" method="post" autocomplete="off" style="width: 151px;height: 151px">
                                 <div class="user">
                                     <img src="vipuser/images/user.jpg" alt="">
-                                    <input type="text"  placeholder="手机号/邮箱" name="phonenumber" id="phonenumber"/>
+                                    <input type="text"  placeholder="手机号/邮箱" ng-model="name" name="phonenumber" id="phonenumber"/>
                                 </div>
                                 <div class="user" style="margin-top: 16px">
                                     <img src="vipuser/images/password.jpg" alt="">
-                                    <input type="password"  placeholder="请您输入登录密码"  name="password" id="password" onkeyup="key()"/>
+                                    <input type="password"  placeholder="请您输入登录密码" ng-model="password"  name="password" id="password" onkeyup="key()"/>
                                 </div>
-                                <input type="button" class="login" id="logins" value="登录">
-                                <span style="float: left;margin-left: 9px"><a style="color: #FA4F4F" href="" onclick="showbox()">忘记密码</a></span>
+                                <input type="button" class="login" id="logins" ng-click="login(name,password)" value="登录">
+                                <span style="float: left;margin-left: 9px"><a style="color: #FA4F4F" href="" ng-click="forgetpw=true">忘记密码</a></span>
                                 <span style="float: right;"><a style="color: #009F3F;position: relative;left: 113px" ui-sref="vipregister">免费注册</a></span>
                             </form>
                         </div>
@@ -76,10 +76,10 @@
 
 
 <!--忘记密码模态框 -->
-<div id="forget-password" style="position: fixed;top: 15%;left: 33%;z-index: 2;display: none">
+<div id="forget-password" ng-show="forgetpw==true" style="position: fixed;top: 15%;left: 33%;z-index: 2;">
     <div class="modal-content" style="width:523px;height: 488px; ">
         <div >
-            <button type="button" onclick="hidebox()" id="forget-password-h" style="background: transparent;color: #009F43;border: 0;position: relative;left: 486px;font-size:25px;">
+            <button type="button" ng-click="forgetpw=false" id="forget-password-h" style="background: transparent;color: #009F43;border: 0;position: relative;left: 486px;font-size:25px;">
                 <img src="../static/background/images/admbutton.png" alt="">
             </button>
         </div>
